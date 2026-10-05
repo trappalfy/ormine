@@ -9,3 +9,8 @@ allowBuilds:
   bufferutil: false
   keccak: false
   utf-8-validate: false
+
+overrides:
+  # RainbowKit draws the WalletConnect QR with cuer 0.0.3, which asks qr for border: 0.
+  # qr 0.6+ rejects that (RangeError "invalid border=0" breaks the page), so keep cuer on the last qr that accepts it.
+  cuer>qr: 0.5.5
