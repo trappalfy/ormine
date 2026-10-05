@@ -6,18 +6,17 @@
 //   KEEPER_KEY=0x... CHAIN_ID=4663 LOOP_MINUTES=60 node scripts/keeper.mjs
 //
 // Optional: RPC_URL, MIN_ETH (default 0.05), SLIPPAGE_BPS vs. the live quote (default 50).
+// ABIs and addresses come from packages/shared/src/generated.ts (`pnpm abi`), so no contract build is needed.
 import { createPublicClient, createWalletClient, formatEther, http, parseEther } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { readFileSync } from "node:fs";
 import * as chains from "viem/chains";
+import { deployments, ormineMinersAbi as minersAbi, veinFunderAbi as funderAbi } from "../packages/shared/src/generated.ts";
 
 const chainId = Number(process.env.CHAIN_ID ?? 4663);
 const chain = { 4663: chains.robinhood, 46630: chains.robinhoodTestnet, 31337: chains.anvil }[chainId];
 const transport = http(process.env.RPC_URL || chain.rpcUrls.default.http[0]);
-const dep = JSON.parse(readFileSync(new URL(`../contracts/deployments/${chainId}.json`, import.meta.url)));
-const abi = (n) => JSON.parse(readFileSync(new URL(`../contracts/out/${n}.sol/${n}.json`, import.meta.url))).abi;
-const funderAbi = abi("VeinFunder");
-const minersAbi = abi("OrmineMiners");
+const dep = deployments[chainId];
+if (!dep) throw new Error(`no deployment for chain ${chainId} in generated.ts`);
 const quoterAbi = [
   {
     type: "function",
@@ -34,7 +33,9 @@ const MAX = parseEther("2");
 const MIN = parseEther(process.env.MIN_ETH ?? "0.05");
 const SLIP = BigInt(process.env.SLIPPAGE_BPS ?? 50);
 
-const account = privateKeyToAccount(process.env.KEEPER_KEY);
+// Wallet exports often drop the 0x prefix, and pasted secrets can carry a trailing newline.
+const rawKey = (process.env.KEEPER_KEY ?? "").trim();
+const account = privateKeyToAccount(rawKey.startsWith("0x") ? rawKey : `0x${rawKey}`);
 const pub = createPublicClient({ chain, transport });
 const wallet = createWalletClient({ chain, transport, account });
 
@@ -43,12 +44,16 @@ async function pass() {
   const weth = await pub.readContract({ address: dep.veinFunder, abi: funderAbi, functionName: "weth" });
   for (let v = 0; v < count; v++) {
     const waiting = await pub.readContract({ address: dep.veinFunder, abi: funderAbi, functionName: "ethPending", args: [v] });
-    if (waiting < MIN) continue;
+    if (waiting < MIN) {
+      console.log(`vein ${v}: ${formatEther(waiting)} ETH waiting, below ${formatEther(MIN)}`);
+      continue;
+    }
     const ethIn = waiting > MAX ? MAX : waiting;
     const info = await pub.readContract({ address: dep.miners, abi: minersAbi, functionName: "veinInfo", args: [v] });
     let minOut = 0n;
     if (QUOTER) {
-      const [, fee] = await pub.readContract({ address: dep.veinFunder, abi: funderAbi, functionName: "routes", args: [v] });
+      // Route is (poolFee, stockFeed).
+      const [fee] = await pub.readContract({ address: dep.veinFunder, abi: funderAbi, functionName: "routes", args: [v] });
       const { result } = await pub.simulateContract({
         address: QUOTER, abi: quoterAbi, functionName: "quoteExactInputSingle",
         args: [{ tokenIn: weth, tokenOut: info.token, amountIn: ethIn, fee, sqrtPriceLimitX96: 0n }],

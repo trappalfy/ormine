@@ -1,0 +1,38 @@
+# Keeper: once an hour swaps the ETH waiting for each vein into that vein's stock (scripts/keeper.mjs).
+# Needs the repository secret KEEPER_KEY: the private key of the wallet set as keeper in VeinFunder.
+# Run it by hand from the Actions tab with "Run workflow".
+name: keeper
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: keeper
+  cancel-in-progress: false
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Install the keeper's dependencies from the lockfile
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile --filter @ormine/scripts --prod
+      - name: Convert waiting ETH
+        run: node scripts/keeper.mjs
+        env:
+          KEEPER_KEY: ${{ secrets.KEEPER_KEY }}
+          CHAIN_ID: "4663"
+          MIN_ETH: "0.01"
