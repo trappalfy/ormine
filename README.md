@@ -60,8 +60,14 @@ APP_URL=http://localhost:3100 node scripts/e2e.mjs
    forge script script/Deploy.s.sol --rpc-url $ROBINHOOD_TESTNET_RPC_URL --account ormine-deployer --broadcast --verify --verifier blockscout --verifier-url https://explorer.testnet.chain.robinhood.com/api/
    ```
 4. Mainnet (4663) — только по решению владельца. Тот же скрипт, но `--rpc-url $ROBINHOOD_RPC_URL` и `--verifier-url https://robinhoodchain.blockscout.com/api/`.
-5. Если `OWNER` не совпадает с кошельком деплоя, вызовите с него `acceptOwnership()` у обоих контрактов. Положите акции в жилы через `deposit` (стартовый пул), затем `setMintPaused(false)`.
-6. `pnpm abi` — адреса попадут во фронт (`packages/shared/src/generated.ts`), потом соберите сайт заново.
+5. Если `OWNER` не совпадает с кошельком деплоя, вызовите с него `acceptOwnership()` у обоих контрактов.
+6. Стартовый пул: скрипт покупает акции за ETH кошелька на Uniswap (не дешевле Chainlink больше чем на 1,5%) и кладёт их в жилы. Пул начинает отдаваться со следующей смены дня жилы (каждые сутки в момент деплоя, у mainnet — 18:57 UTC).
+   ```bash
+   cd contracts && SEED_WEI=$(cast to-wei 0.5) forge script script/SeedMainnet.s.sol --rpc-url $ROBINHOOD_RPC_URL --account ormine-deployer --sender $OWNER --broadcast
+   ```
+   `SEED_WEI` — ETH на каждую жилу; `SEED_WEI_NVDA` / `SEED_WEI_TSLA` / `SEED_WEI_AAPL` задают жилу отдельно (0 — пропустить).
+7. Открыть минт: `cast send <OrmineMiners> "setMintPaused(bool)" false --account ormine-deployer --rpc-url $ROBINHOOD_RPC_URL`.
+8. `pnpm abi` — адреса попадут во фронт (`packages/shared/src/generated.ts`), потом соберите сайт заново.
 
 ## Keeper
 
