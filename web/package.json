@@ -9,6 +9,9 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit"
   },
+  "engines": {
+    "node": "24.x"
+  },
   "dependencies": {
     "@ormine/shared": "workspace:*",
     "@rainbow-me/rainbowkit": "2.2.11",

@@ -15,10 +15,10 @@ const formatInt = (n: number) => n.toLocaleString("en-US");
 
 type Status = VeinsState["status"];
 
-/** "…" while loading, "—" when the chain can't be read or the value is unknown. */
+/** "…" while loading, "—" before launch, when the chain can't be read or the value is unknown. */
 function show<T>(status: Status, value: T | null, format: (v: T) => string) {
   if (status === "loading") return "…";
-  if (status === "error" || value === null) return "—";
+  if (status !== "ready" || value === null) return "—";
   return format(value);
 }
 
@@ -50,6 +50,7 @@ export function VeinFolder({ vein, status, extra }: VeinFolderProps) {
         ))}
       </dl>
       {status === "error" ? <p className={styles.offline}>Can&apos;t reach the chain right now.</p> : null}
+      {status === "soon" ? <p className={styles.offline}>Opens at launch.</p> : null}
       {extra}
       <Link className={styles.go} href={`/mint?vein=${encodeURIComponent(t)}`}>
         &gt; Send a miner here

@@ -16,7 +16,8 @@ export type VeinSummary = {
   totalHash: number | null;
 };
 
-export type VeinsState = { status: "loading" | "error" | "ready"; veins: VeinSummary[] };
+// "soon": the contracts are not deployed on this chain yet.
+export type VeinsState = { status: "loading" | "error" | "soon" | "ready"; veins: VeinSummary[] };
 
 const REFRESH_MS = 60_000; // design 4.5
 
@@ -48,7 +49,7 @@ async function readVeins(): Promise<VeinSummary[]> {
 
 /** Live vein numbers from OrmineMiners, refreshed every minute. Client components only. */
 export function useVeinsSummary(): VeinsState {
-  const [state, setState] = useState<VeinsState>(() => placeholder(deployment ? "loading" : "error"));
+  const [state, setState] = useState<VeinsState>(() => placeholder(deployment ? "loading" : "soon"));
   useEffect(() => {
     if (!deployment) return;
     let alive = true;
