@@ -75,4 +75,4 @@ KEEPER_KEY=0x... CHAIN_ID=4663 LOOP_MINUTES=60 node scripts/keeper.mjs
 
 ## Сайт на Vercel
 
-Root directory — `web`, фреймворк — Next.js. Переменные — по образцу `web/.env.example`. Для mainnet: `NEXT_PUBLIC_CHAIN_ID=4663`.
+Сайт: https://ormine.vercel.app, собирается из `main` на GitHub. Root directory — `web`, фреймворк — Next.js. Переменные — по образцу `web/.env.example`; без `NEXT_PUBLIC_CHAIN_ID` сайт работает с mainnet (4663).

@@ -1,7 +1,7 @@
 import { anvil, deploymentFor, ormineMinersAbi, robinhood, robinhoodTestnet } from "@ormine/shared";
 
-// One chain per build: NEXT_PUBLIC_CHAIN_ID = 4663 (mainnet), 46630 (testnet) or 31337 (local anvil).
-export const APP_CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? robinhoodTestnet.id);
+// One chain per build: NEXT_PUBLIC_CHAIN_ID = 4663 (mainnet, the default), 46630 (testnet) or 31337 (local anvil).
+export const APP_CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID || robinhood.id);
 
 export const appChain = APP_CHAIN_ID === robinhood.id ? robinhood : APP_CHAIN_ID === anvil.id ? anvil : robinhoodTestnet;
 
