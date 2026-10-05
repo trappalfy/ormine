@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { CheckerBand } from "@/components/os/CheckerBand";
 import { FallingOre, OreBadges, OreGame } from "@/components/os/FallingOre";
+import { X_URL } from "@/lib/links";
 import styles from "./Footer.module.css";
 
-const X_URL = process.env.NEXT_PUBLIC_X_URL || "#";
 // North-east arrow forced to text presentation (no colour emoji on Apple).
 const ARROW = "\u2197\uFE0E";
 
@@ -34,15 +34,9 @@ export function Footer() {
                 <p className={styles.tagline}>Mine the market</p>
                 <ul className={styles.links}>
                   <li>
-                    {X_URL === "#" ? (
-                      <a href={X_URL} aria-label="Ormine on X">
-                        X {ARROW}
-                      </a>
-                    ) : (
-                      <a href={X_URL} target="_blank" rel="noopener noreferrer" aria-label="Ormine on X (opens in a new tab)">
-                        X {ARROW}
-                      </a>
-                    )}
+                    <a href={X_URL} target="_blank" rel="noopener noreferrer" aria-label="Ormine on X (opens in a new tab)">
+                      X {ARROW}
+                    </a>
                   </li>
                 </ul>
               </div>

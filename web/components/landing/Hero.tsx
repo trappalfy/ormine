@@ -4,14 +4,12 @@ import { BevelButton } from "@/components/os/BevelButton";
 import { CheckerBand } from "@/components/os/CheckerBand";
 import { PixelIcon } from "@/components/os/PixelIcon";
 import { deployment } from "@/lib/chain";
+import { X_URL } from "@/lib/links";
 // The mine entrance at night and a miner seen from behind (from ormine-assets/hero-wide.png).
 import mineEntrance from "@/assets/img/mine-entrance.png";
 import { CopyAddress } from "./CopyAddress";
 import { LANDING_NAV } from "./TopLine";
 import styles from "./Hero.module.css";
-
-const X_URL = process.env.NEXT_PUBLIC_X_URL || "#";
-
 
 const POINTS = {
   left: ["NFT miners on Robinhood Chain", "Paid in real stock tokens"],
@@ -110,8 +108,9 @@ export function Hero() {
       <div className={styles.social}>
         <a
           href={X_URL}
-          aria-label={X_URL === "#" ? "Ormine on X" : "Ormine on X (opens in a new tab)"}
-          {...(X_URL === "#" ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Ormine on X (opens in a new tab)"
         >
           <PixelGlyph map={X_MARK} size={32} />
         </a>
