@@ -39,6 +39,13 @@ const account = privateKeyToAccount(rawKey.startsWith("0x") ? rawKey : `0x${rawK
 const pub = createPublicClient({ chain, transport });
 const wallet = createWalletClient({ chain, transport, account });
 
+// A wrong key would only show up as skipped swaps, so refuse to start with one.
+const keeper = await pub.readContract({ address: dep.veinFunder, abi: funderAbi, functionName: "keeper" });
+if (keeper.toLowerCase() !== account.address.toLowerCase()) {
+  throw new Error(`KEEPER_KEY belongs to ${account.address}, but the VeinFunder keeper is ${keeper}`);
+}
+console.log(`keeper ${account.address} on chain ${chainId}`);
+
 async function pass() {
   const count = await pub.readContract({ address: dep.miners, abi: minersAbi, functionName: "veinCount" });
   const weth = await pub.readContract({ address: dep.veinFunder, abi: funderAbi, functionName: "weth" });
