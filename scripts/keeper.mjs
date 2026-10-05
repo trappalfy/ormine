@@ -11,7 +11,7 @@ import { privateKeyToAccount } from "viem/accounts";
 import { readFileSync } from "node:fs";
 import * as chains from "viem/chains";
 
-const chainId = Number(process.env.CHAIN_ID ?? 46630);
+const chainId = Number(process.env.CHAIN_ID ?? 4663);
 const chain = { 4663: chains.robinhood, 46630: chains.robinhoodTestnet, 31337: chains.anvil }[chainId];
 const transport = http(process.env.RPC_URL || chain.rpcUrls.default.http[0]);
 const dep = JSON.parse(readFileSync(new URL(`../contracts/deployments/${chainId}.json`, import.meta.url)));
