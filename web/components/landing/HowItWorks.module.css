@@ -1,0 +1,5 @@
+.scene {
+  object-fit: cover;
+  object-position: 62% center;
+  image-rendering: pixelated;
+}

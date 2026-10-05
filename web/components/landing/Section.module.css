@@ -1,0 +1,32 @@
+/* Shared section shells: light (paper) and dark (graphite), 110/120px padding (70/80 on phones). */
+.sec {
+  padding: 110px 0 120px;
+}
+
+.dark {
+  background: var(--graphite);
+  color: #f2f2f2;
+}
+
+/* Sections that follow another light section closely (How it works, The crew). */
+.sec.tightTop {
+  padding-top: 20px;
+}
+
+/* Where the ore comes from sits straight under Veins. */
+.sec.flushTop {
+  padding-top: 0;
+}
+
+.sec.shortBottom {
+  padding-bottom: 110px;
+}
+
+@media (max-width: 560px) {
+  .sec {
+    padding: 70px 0 80px;
+  }
+  .sec.shortBottom {
+    padding-bottom: 80px;
+  }
+}

@@ -1,0 +1,89 @@
+/* Docs: graphite top line, then light reading pages. */
+.head {
+  background: var(--graphite);
+  padding-bottom: 28px;
+}
+
+.page {
+  padding: 70px 0 110px;
+}
+
+.prose {
+  max-width: 820px;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.prose h3 {
+  margin: 48px 0 12px;
+  font: 500 28px/1.2 var(--mono);
+  scroll-margin-top: 24px;
+}
+
+.prose h3::before {
+  content: "/ ";
+  color: var(--rust);
+}
+
+.prose p,
+.prose ul {
+  margin: 0 0 14px;
+}
+
+.prose li {
+  margin-bottom: 6px;
+}
+
+.prose code {
+  font: 500 16px var(--mono);
+  background: #e2e2e2;
+  padding: 1px 5px;
+}
+
+.formula {
+  box-shadow: var(--bevel-field);
+  background: #fff;
+  padding: 14px 18px;
+  font: 500 17px var(--mono);
+  margin: 0 0 14px;
+}
+
+.table {
+  border-collapse: collapse;
+  margin: 0 0 14px;
+  font-size: 16px;
+}
+
+.table th,
+.table td {
+  border: 1px solid var(--win-dark);
+  padding: 6px 12px;
+  text-align: left;
+}
+
+.table th {
+  background: var(--win);
+  font-weight: 600;
+}
+
+.addr {
+  font: 400 14px var(--mono);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding: 40px 0 70px;
+  }
+  .prose {
+    font-size: 16px;
+  }
+  /* The monospace face is wide: keep the tier table inside a phone screen. */
+  .table {
+    font-size: 13px;
+  }
+  .table th,
+  .table td {
+    padding: 5px 6px;
+  }
+}

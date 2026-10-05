@@ -1,0 +1,13 @@
+.badge {
+  display: inline-flex;
+  gap: 28px;
+  background: var(--ink);
+  color: #fff;
+  font: 500 14px/1.6 var(--mono);
+  padding: 4px 10px;
+}
+
+.value {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}

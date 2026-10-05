@@ -1,0 +1,80 @@
+/* Paint-style window (design 3.4): menu, 2×4 tools, sunken canvas, 12 swatches, status line. */
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  padding: 6px 10px;
+  font: 500 16px/1.5 var(--sans);
+}
+
+.menu u {
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+
+.work {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 8px;
+  padding: 6px;
+}
+
+.tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  align-content: start;
+}
+
+.tool {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background: var(--win);
+  box-shadow: inset -2px -2px #0a0a0a, inset 2px 2px #fff, inset -3px -3px var(--win-dark);
+}
+
+.on {
+  background: #d8d8d8;
+  box-shadow: inset 2px 2px #0a0a0a, inset -2px -2px #fff;
+}
+
+.canvas {
+  background: #fff;
+  box-shadow: inset 2px 2px var(--win-dark), inset -2px -2px #fff;
+  padding: 6px;
+  min-width: 0;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 3px;
+  padding: 8px 6px 4px 90px;
+}
+
+.swatches i {
+  display: block;
+  aspect-ratio: 1.6;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px var(--win-dark);
+}
+
+.status {
+  margin: 4px;
+  padding: 4px 10px;
+  font: 400 14px/1.5 var(--sans);
+  color: #333;
+  box-shadow: inset 1px 1px var(--win-dark), inset -1px -1px #fff;
+}
+
+@media (max-width: 560px) {
+  .work {
+    grid-template-columns: 1fr;
+  }
+  .tools {
+    display: none;
+  }
+  .swatches {
+    padding-left: 6px;
+  }
+}

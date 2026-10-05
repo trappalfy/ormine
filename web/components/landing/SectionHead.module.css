@@ -1,0 +1,62 @@
+/* Section header: "> Title [n]" on the left, "/ caption" on the right, 2px rule (design 2.3). */
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 12px 24px;
+  margin-bottom: 48px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.title {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin: 0;
+  font: 500 clamp(40px, 5.2vw, 84px)/1 var(--mono);
+  letter-spacing: 0.02em;
+}
+
+.title::before {
+  content: ">";
+  content: ">" / "";
+  display: inline-block;
+  font-weight: 400;
+  transform: scaleX(0.7);
+}
+
+.n {
+  align-self: flex-start;
+  margin-top: -6px;
+  font: 400 16px/1.2 var(--sans);
+  letter-spacing: 0;
+  color: var(--ink-2);
+}
+
+.cap {
+  padding-bottom: 6px;
+  font: 400 22px/1.4 var(--sans);
+  color: var(--ink-2);
+}
+
+.dark {
+  border-color: #ededed;
+}
+
+.dark .n,
+.dark .cap {
+  color: #c9cbcd;
+}
+
+@media (max-width: 560px) {
+  .head {
+    grid-template-columns: 1fr;
+  }
+  .title {
+    gap: 12px;
+  }
+  .cap {
+    font-size: 19px;
+  }
+}

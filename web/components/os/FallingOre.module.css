@@ -1,0 +1,22 @@
+.game {
+  position: relative;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 280px;
+}
+
+.pause {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  z-index: 1;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

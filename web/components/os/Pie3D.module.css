@@ -1,0 +1,29 @@
+.pie {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.legend {
+  display: grid;
+  gap: 10px;
+  font: 400 16px/1.5 var(--sans);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.chip {
+  display: block;
+  width: 22px;
+  height: 16px;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff;
+}
+
+.value {
+  font: 600 16px/1.5 var(--mono);
+}

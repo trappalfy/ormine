@@ -1,0 +1,55 @@
+/* Properties window (design 3.7): tabs (active one raised into the panel), sunken panel. */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 10px 10px 0;
+}
+
+.tab {
+  padding: 6px 14px;
+  border: 0;
+  background: var(--win);
+  color: var(--ink);
+  font: 400 15px/1.5 var(--sans);
+  box-shadow: inset 2px 2px #fff, inset -2px 0 var(--win-dark);
+  cursor: pointer;
+}
+
+.tab[aria-selected="true"] {
+  position: relative;
+  top: 2px;
+  z-index: 1;
+  padding-bottom: 8px;
+  font-weight: 600;
+}
+
+.pbody {
+  display: grid;
+  margin: 0 10px 10px;
+  padding: 22px;
+  box-shadow: inset 2px 2px #fff, inset -2px -2px var(--win-dark), inset -3px -3px #0a0a0a;
+}
+
+/* All panels share one grid cell, so switching tabs never changes the window height. */
+.panel {
+  grid-area: 1 / 1;
+  display: grid;
+  gap: 18px;
+  align-content: start;
+  min-width: 0;
+}
+
+.panel:focus-visible {
+  outline-offset: 6px;
+}
+
+.inactive {
+  visibility: hidden;
+}
+
+@media (max-width: 560px) {
+  .pbody {
+    padding: 16px;
+  }
+}

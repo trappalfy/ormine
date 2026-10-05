@@ -1,0 +1,34 @@
+/* Folder card (design 3.8): outline drawn in SVG to the card's real size, tab on the left. */
+.folder {
+  position: relative;
+  min-height: 340px;
+  padding: 58px 32px 30px;
+  color: #f2f2f2;
+}
+
+.outline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 18px;
+  font: 500 34px/1.2 var(--mono);
+}
+
+@media (max-width: 560px) {
+  .folder {
+    padding: 52px 20px 24px;
+    min-height: 0;
+  }
+  .title {
+    font-size: 28px;
+  }
+}

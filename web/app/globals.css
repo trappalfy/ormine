@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+/* Ormine tokens (ORMINE_DESIGN.md, section 2). One fixed light theme with dark sections: it is the brand. */
+:root {
+  --graphite: #2a2d2f;
+  --paper: #f0f0f0;
+  --ink: #1d1e1f;
+  --ink-2: #4a4d50;
+  --muted-dark: #a9adb0;
+  --win: #c3c3c3;
+  --win-dark: #808080;
+  --gold: #f5cc17;
+  --amber: #e98d24;
+  --rust: #8f4822;
+  --deep: #16100d;
+  --glow: #f4f76a;
+
+  --title-gradient: linear-gradient(90deg, #6e3207, #b8641a 55%, #e9a825);
+  --bevel-out: inset -2px -2px #0a0a0a, inset 2px 2px #fff, inset -4px -4px var(--win-dark), inset 4px 4px #dfdfdf;
+  --bevel-in: inset 2px 2px #0a0a0a, inset -2px -2px #fff, inset 4px 4px var(--win-dark), inset -4px -4px #dfdfdf;
+  --bevel-field: inset 2px 2px var(--win-dark), inset -2px -2px #fff, inset 3px 3px #0a0a0a;
+
+  --mono: var(--font-departure), ui-monospace, Menlo, monospace;
+  --sans: var(--mono);
+  --pixel: var(--mono);
+
+  color-scheme: light;
+}
+
+/* Tailwind utilities for the same tokens: bg-graphite, text-gold, font-mono, font-pixel, … */
+@theme inline {
+  --color-graphite: var(--graphite);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted-dark: var(--muted-dark);
+  --color-win: var(--win);
+  --color-win-dark: var(--win-dark);
+  --color-gold: var(--gold);
+  --color-amber: var(--amber);
+  --color-rust: var(--rust);
+  --color-deep: var(--deep);
+  --color-glow: var(--glow);
+  --font-mono: var(--mono);
+  --font-sans: var(--sans);
+  --font-pixel: var(--pixel);
+  --breakpoint-tablet: 1100px;
+  --breakpoint-phone: 560px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 18px/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  /* Departure Mono has one weight; a synthesized bold smears the pixels. */
+  font-synthesis-weight: none;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+/* Pixel art is never smoothed. */
+.px {
+  image-rendering: pixelated;
+}
+
+/* Page container: min(1760px, 100% - 32px), centred. */
+.wrap {
+  width: min(1760px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+@media (max-width: 560px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,59 @@
+/* Raised bevel button; pressed = inverted bevel (design 2.4, 3.2). */
+.btn {
+  display: inline-block;
+  font: 700 15px/1.6 var(--mono);
+  color: var(--ink);
+  background: var(--win);
+  border: 0;
+  border-radius: 0;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: var(--bevel-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active:not(:disabled) {
+  box-shadow: var(--bevel-in);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.btn:disabled {
+  cursor: default;
+  color: var(--win-dark);
+  text-shadow: 1px 1px 0 #fff;
+}
+
+.large {
+  font-size: 17px;
+  padding: 12px 24px;
+}
+
+.sans {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.large.sans {
+  font-size: 18px;
+  padding: 10px 34px;
+}
+
+.gold {
+  background: var(--gold);
+  box-shadow: inset -3px -3px #8a5a12, inset 3px 3px #ffe680, 0 0 0 2px #1b120c;
+}
+
+.gold:hover {
+  background: #ffd93a;
+}
+
+.gold:active:not(:disabled) {
+  box-shadow: inset 3px 3px #8a5a12, inset -3px -3px #ffe680, 0 0 0 2px #1b120c;
+}

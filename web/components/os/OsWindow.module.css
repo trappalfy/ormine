@@ -1,0 +1,65 @@
+/* Window body in --win with the raised bevel, gradient title bar, square controls (design 2.4, 3.1). */
+.win {
+  background: var(--win);
+  color: var(--ink);
+  box-shadow: var(--bevel-out);
+  padding: 4px;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 6px 6px 12px;
+  color: #fff;
+  font: 700 18px/1.25 var(--sans);
+  background: var(--title-gradient);
+  /* keeps white text readable if a long title reaches the lighter end of the gradient */
+  text-shadow: 0 1px 0 rgb(70 30 0 / 0.45);
+}
+
+.lg {
+  font-size: 22px;
+}
+
+.title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.ctrls {
+  display: flex;
+  gap: 4px;
+  flex: none;
+  text-shadow: none;
+}
+
+.ctrl {
+  width: 28px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  background: var(--win);
+  color: #000;
+  font: 700 16px/26px var(--mono);
+  text-align: center;
+  box-shadow: inset -2px -2px #0a0a0a, inset 2px 2px #fff, inset -3px -3px var(--win-dark);
+}
+
+button.ctrl {
+  cursor: pointer;
+}
+
+button.ctrl:active {
+  box-shadow: inset 2px 2px #0a0a0a, inset -2px -2px #fff, inset 3px 3px var(--win-dark);
+}
+
+@media (max-width: 560px) {
+  .lg {
+    font-size: 16px;
+  }
+  .bar {
+    font-size: 16px;
+  }
+}

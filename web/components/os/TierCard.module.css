@@ -1,0 +1,57 @@
+/* Tier card (design 3.13): picture window, name + pixel "TIER n", 4 bars, description. */
+.meta {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.name {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  font: 500 24px/1.3 var(--mono);
+}
+
+.tier {
+  font: 400 14px/1 var(--pixel);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.bars {
+  display: flex;
+  gap: 6px;
+}
+
+.bars i {
+  display: block;
+  flex: 1;
+  height: 12px;
+  background: #d6d6d6;
+}
+
+.bars i.on {
+  background: var(--gold);
+  box-shadow: inset 0 0 0 1px #c79a00;
+}
+
+.desc {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+@media (max-width: 560px) {
+  .name {
+    font-size: 18px;
+  }
+  .tier {
+    font-size: 11px;
+  }
+  .desc {
+    font-size: 15px;
+  }
+}

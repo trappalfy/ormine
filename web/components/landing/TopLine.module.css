@@ -1,0 +1,50 @@
+/* Top line: brand · nav · Launch app, over a 2px rule (design 4.1). */
+.topline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 16px;
+  padding: 28px 0 10px;
+  border-bottom: 2px solid currentColor;
+  font: 500 17px/1.6 var(--mono);
+  color: #f2f2f2;
+}
+
+.brand {
+  justify-self: start;
+  align-self: center;
+}
+
+.brand img {
+  display: block;
+  width: auto;
+  height: 26px;
+}
+
+.nav {
+  display: flex;
+  gap: 28px;
+}
+
+.nav a {
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.nav a:hover {
+  opacity: 1;
+  color: var(--gold);
+}
+
+.right {
+  justify-self: end;
+}
+
+@media (max-width: 1100px) {
+  .topline {
+    grid-template-columns: 1fr auto;
+  }
+  .nav {
+    display: none;
+  }
+}

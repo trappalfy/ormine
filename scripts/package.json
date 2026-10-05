@@ -1,0 +1,14 @@
+{
+  "name": "@ormine/scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "keeper": "node keeper.mjs"
+  },
+  "dependencies": {
+    "viem": "2.57.2"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.12.0"
+  }
+}

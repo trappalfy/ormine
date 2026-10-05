@@ -1,0 +1,88 @@
+/* About the mine [1] (design 4.2). */
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 560px) 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.text p {
+  margin: 0 0 22px;
+  font-size: 22px;
+  line-height: 1.45;
+}
+
+.text b {
+  font-weight: 600;
+}
+
+.text .cta {
+  margin-top: 34px;
+}
+
+.stage {
+  position: relative;
+  min-height: 720px;
+}
+
+.paint {
+  position: absolute;
+  left: 4%;
+  top: 60px;
+  width: 76%;
+}
+
+.shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+.digger {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 270px;
+  z-index: 1;
+}
+
+.rig {
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 240px;
+  z-index: 1;
+}
+
+@media (max-width: 1100px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+  .stage {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .paint {
+    grid-column: 1 / -1;
+  }
+  .paint,
+  .digger,
+  .rig {
+    position: static;
+    width: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .text p {
+    font-size: 18px;
+  }
+  .stage {
+    gap: 12px;
+  }
+}

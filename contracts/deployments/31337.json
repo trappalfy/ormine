@@ -1,0 +1,6 @@
+{
+  "chainId": 31337,
+  "miners": "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
+  "startBlock": 0,
+  "veinFunder": "0x0B306BF915C4d645ff596e518fAf3F9669b97016"
+}
