@@ -68,6 +68,11 @@ APP_URL=http://localhost:3100 node scripts/e2e.mjs
    `SEED_WEI` — ETH на каждую жилу; `SEED_WEI_NVDA` / `SEED_WEI_TSLA` / `SEED_WEI_AAPL` задают жилу отдельно (0 — пропустить).
 7. Открыть минт: `cast send <OrmineMiners> "setMintPaused(bool)" false --account ormine-deployer --rpc-url $ROBINHOOD_RPC_URL`.
 8. `pnpm abi` — адреса попадут во фронт (`packages/shared/src/generated.ts`), потом соберите сайт заново.
+9. Разовый бонус шахтёрам: скрипт покупает акции на сумму в долларах и сразу рассылает их владельцам шахтёров, которые сейчас копают в жиле, по хешрейту. Жилы тут не участвуют: они отдают только 1% в день. Без `--broadcast` скрипт только печатает раздачу.
+   ```bash
+   cd contracts && BONUS_USD=20 forge script script/BonusMainnet.s.sol --rpc-url $ROBINHOOD_RPC_URL --account ormine-deployer --sender $OWNER --broadcast
+   ```
+   `BONUS_USD_NVDA` / `BONUS_USD_TSLA` / `BONUS_USD_AAPL` задают жилу отдельно (0 — пропустить).
 
 ## Keeper
 
