@@ -2355,6 +2355,11 @@ export const veinFunderAbi = [
 ] as const;
 
 export const deployments = {
+  "4663": {
+    "miners": "0xdFF077fAbD6d5F88Ce5bbfdFdF35Af7DCd110280",
+    "veinFunder": "0x3E4864EfDaAdFcb057cB4187351383590D3b9917",
+    "startBlock": 81014364
+  },
   "31337": {
     "miners": "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
     "veinFunder": "0x0B306BF915C4d645ff596e518fAf3F9669b97016",
