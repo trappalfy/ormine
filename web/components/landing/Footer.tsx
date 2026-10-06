@@ -25,8 +25,6 @@ export function Footer() {
                   Ormine
                 </p>
                 <div className={styles.small}>
-                  <span>Terms</span>
-                  <span>Privacy</span>
                   <Link href="/docs/risks">Risks</Link>
                 </div>
               </div>
