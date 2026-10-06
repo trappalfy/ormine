@@ -9,10 +9,11 @@ const departure = localFont({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+// Link previews point here. Fixed rather than taken from Vercel's production domain, which also lists other domains.
+const SITE_URL = "https://www.ormine.fun";
 
 export const metadata: Metadata = {
-  ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Ormine · Mine the market",
     template: "%s · Ormine",
