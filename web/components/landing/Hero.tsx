@@ -3,11 +3,9 @@ import Link from "next/link";
 import { BevelButton } from "@/components/os/BevelButton";
 import { CheckerBand } from "@/components/os/CheckerBand";
 import { PixelIcon } from "@/components/os/PixelIcon";
-import { deployment } from "@/lib/chain";
 import { X_URL } from "@/lib/links";
 // The mine entrance at night and a miner seen from behind (from ormine-assets/hero-wide.png).
 import mineEntrance from "@/assets/img/mine-entrance.png";
-import { CopyAddress } from "./CopyAddress";
 import { LANDING_NAV } from "./TopLine";
 import styles from "./Hero.module.css";
 
@@ -118,7 +116,6 @@ export function Hero() {
 
       <div className={`wrap ${styles.foot}`}>
         <Points items={POINTS.left} side="left" />
-        {deployment && <CopyAddress label="NFT" address={deployment.miners} />}
         <Points items={POINTS.right} side="right" />
       </div>
 

@@ -19,7 +19,7 @@
   z-index: -1;
 }
 
-/* The art keeps its height to the scene box and is centred; the miner's feet end above the contract plate.
+/* The art keeps its height to the scene box and is centred; the miner's feet end above the points.
    Wider screens show dark edges around it, narrower ones crop its sides. */
 .scene {
   bottom: 120px;
@@ -187,11 +187,11 @@
   opacity: 0.35;
 }
 
-/* ---- bottom: points and the contract plate ---- */
+/* ---- bottom: points ---- */
 .foot {
   display: grid;
-  grid-template-areas: "left ca right";
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas: "left right";
+  grid-template-columns: 1fr 1fr;
   align-items: end;
   gap: 24px;
 }
@@ -222,52 +222,10 @@
   justify-self: end;
 }
 
-.ca {
-  grid-area: ca;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 14px 12px 22px;
-  border: 2px solid #3b2c20;
-  background: rgb(14 10 8 / 0.85);
-  font-size: 16px;
-}
-
-.caLabel {
-  color: var(--gold);
-}
-
-.caShort {
-  display: none;
-}
-
-.caCopy {
-  padding: 6px 12px;
-  border: 0;
-  background: var(--gold);
-  box-shadow: inset -2px -2px #8a5a12, inset 2px 2px #ffe680;
-  color: var(--ink);
-  font: 15px var(--mono);
-  cursor: pointer;
-}
-
-.caCopy:active {
-  box-shadow: inset 2px 2px #8a5a12, inset -2px -2px #ffe680;
-}
-
 .band {
   position: absolute;
   left: 0;
   bottom: 0;
-}
-
-@media (max-width: 1300px) {
-  .caFull {
-    display: none;
-  }
-  .caShort {
-    display: inline;
-  }
 }
 
 @media (max-width: 1100px) {
@@ -278,17 +236,6 @@
   .rail,
   .social {
     display: none;
-  }
-  /* Two rows of points and the plate: lift the art so the miner stands above them. */
-  .scene {
-    bottom: 220px;
-  }
-  .foot {
-    grid-template-areas: "left right" "ca ca";
-    grid-template-columns: 1fr 1fr;
-  }
-  .ca {
-    justify-self: center;
   }
 }
 
@@ -333,7 +280,7 @@
     font-size: 17px;
   }
   .foot {
-    grid-template-areas: "left" "right" "ca";
+    grid-template-areas: "left" "right";
     grid-template-columns: 1fr;
     gap: 14px;
   }
@@ -344,11 +291,6 @@
   }
   .right {
     justify-self: start;
-  }
-  .ca {
-    justify-self: stretch;
-    justify-content: space-between;
-    font-size: 16px;
   }
 }
 
