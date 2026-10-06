@@ -86,4 +86,10 @@ KEEPER_KEY=0x... CHAIN_ID=4663 LOOP_MINUTES=60 node scripts/keeper.mjs
 
 ## Сайт на Vercel
 
-Сайт: https://ormine.vercel.app, собирается из `main` на GitHub. Root directory — `web`, фреймворк — Next.js. Переменные — по образцу `web/.env.example`; без `NEXT_PUBLIC_CHAIN_ID` сайт работает с mainnet (4663).
+Сайт: https://ormine.fun (основной домен проекта в Vercel; `ormine.vercel.app` перенаправляет туда), собирается из `main` на GitHub. Root directory — `web`, фреймворк — Next.js. Переменные — по образцу `web/.env.example`; без `NEXT_PUBLIC_CHAIN_ID` сайт работает с mainnet (4663).
+
+Картинки NFT берутся по адресу из контракта (`imageBase` + `digger.png` и т.д. из `web/public/nft/`). При смене домена сначала убедитесь, что `https://<домен>/nft/digger.png` открывается, потом обновите адрес в контракте с кошелька владельца:
+```bash
+cast send 0xdFF077fAbD6d5F88Ce5bbfdFdF35Af7DCd110280 "setImageBase(string)" "https://ormine.fun/nft/" --account ormine-deployer --rpc-url $ROBINHOOD_RPC_URL
+```
+Контракт сообщит маркетплейсам об обновлении (ERC-4906 `BatchMetadataUpdate`).
